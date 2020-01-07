@@ -1,0 +1,15 @@
+#second_nav{
+    height: 200px;
+
+}
+#second_nav a{
+    color: #1a16ff;
+    font-size: 17px;
+}
+
+.myform{
+    margin-top: 40px;
+}
+#carouselIndicators{
+    height: 300px;
+}
