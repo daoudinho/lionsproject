@@ -14,15 +14,24 @@ class Login
 
         $stored= $data["password"];
         $username= $data["username"];
-        if(password_verify($password,$stored))
+        if($data['activate']==0)
+        {
+              echo "<span>Votre compte n'est pas encore activé</span>";
+        }elseif(password_verify($password,$stored))
         {
             session_start();
             $_SESSION["id"]=$data["id"];
+            if($data['admin']==true){
+                    $_SESSION["admin"]=$data["admin"];
+                    setcookie("admin",true, time()+time()+365*24*3600,'/');
+              }
+
             if(isset($_POST["remember_me"]))
             {
                 setcookie("id",$data["id"], time()+time()+365*24*3600,'/');
             }
-            header("Location://projet/lions/?page=dashboard");
+            header('Location:'.PATH.'/lions/?page=dashboard');
+
 
         }
         else {

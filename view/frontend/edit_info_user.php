@@ -1,8 +1,9 @@
 <?php $title ="Editer mes infos";?>
 
 <?php ob_start();?>
+    <a href="<?php echo PATH ?>/lions/?page=dashboard">Retour</a>
     <div class="justify-content-lg-center container myform">
-        <form method='POST' action='//projet/lions/?page=edit_user' class="col s12 m8 l6 offset-l3 offset-m2 form-group ">
+        <form method='POST' action=''.PATH.'/lions/?page=edit_user' class="col s12 m8 l6 offset-l3 offset-m2 form-group ">
 
             <div class="row">
                 <div class="col-lg-12">
@@ -34,7 +35,7 @@
                 </div>
             </div>
             <div class="row justify-content-between">
-                <input class="" type='submit' name='edit_user' value="Valider">
+                <input class="btn btn-primary" type='submit' name='edit_user' value="Valider">
             </div>
         </form>
     </div>

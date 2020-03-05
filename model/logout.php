@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    /*session_start();
 
     session_destroy();
 
@@ -13,4 +13,4 @@
     unset($_COOKIE['admin']);
     unset($_COOKIE['id']);
 
-    header('Location: index.php');
+    header('Location: index.php');*/

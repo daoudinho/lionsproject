@@ -1,10 +1,36 @@
-<?php $title =$data["title"];?>
+<?php $title =$data["title"];
+    if($data['actif_last'] == 1) {
+          $statutLast = "<p >Date de la dernière édition: ". $data['last_edition']."</p>";
+    }else{
+          $statutLast="";
+    }
+
+    if($data['actif_next'] == 1) {
+          $statutNext ="<p >Date de la prochaine édition: ". $data['next_edition']."</p>";
+    }else{
+          $statutNext="";
+    }
+
+
+?>
 
 <?php ob_start();?>
+<div class="container " style="margin-top: 50px;
+    margin-bottom: 200px;">
     <h1><?php echo $data["title"] ?></h1>
-    <img src="public/media/img_<?php echo $data['id'] ?>.jpg" alt="Les membres du lions club nice doyen avec des enfants">
-    <p>
-        <?php echo $data["content"] ?>
-    </p>
+      <?=$statutLast?>
+      <?=$statutNext?>
+    <div class="row">
+        <div class="col-6">
+            <p>
+                  <?php echo $data["content"] ?>
+            </p>
+        </div>
+        <div class="col-6">
+            <img src="upload/<?php echo $data['file'] ?>" alt="<?php echo $data['file'] ?>" style="max-width: 100%">
+        </div>
+    </div>
+</div>
+
 <?php $content = ob_get_clean();?>
 <?php require_once("template.php");?>

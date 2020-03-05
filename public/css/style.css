@@ -1,15 +1,33 @@
 #second_nav{
     height: 200px;
-
 }
-#second_nav a{
+#mainTitle{
+    color: #1a16ff;
+    font-size: 40px;
+}
+#second_navUl a{
     color: #1a16ff;
     font-size: 17px;
 }
 
-.myform{
-    margin-top: 40px;
+.accueil{
+    min-height: 1000px;
 }
-#carouselIndicators{
-    height: 300px;
+.white-font{
+    background-color: white;
+    opacity: 0.5;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
 }
+.carousel-caption h4, p{
+    color:black;
+}
+
+body{
+    height: 100%;
+}
+
+

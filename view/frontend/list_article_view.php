@@ -10,7 +10,7 @@
                             <h5 class="card-title"><?php echo $article['title'] ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
                             <p class="card-text"><?php echo $article['content'] ?></p>
-                            <a href="//projet/lions/?page=article&article=<?php echo $article['title']?>" class="card-link">Voir plus</a>
+                            <a href="<?php echo PATH ?>/lions/?page=article&article=<?php echo $article['title']?>" class="card-link">Voir plus</a>
                             <a href="#" class="card-link">Another link</a>
                         </div>
                     </div>

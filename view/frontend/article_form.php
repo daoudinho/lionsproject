@@ -1,8 +1,11 @@
-<?php $title ="Créer un évenement";?>
+<?php
+$title ="Créer un évenement";?>
 
 <?php ob_start();?>
+<a href="<?php echo PATH ?>/lions/?page=manage_events">Retour</a>
     <div class="justify-content-lg-center container myform">
-        <form method='POST' action='//projet/lions/?page=new_article' class="col s12 m8 l6 offset-l3 offset-m2 form-group ">
+        <h1 class="mt-2 mb-4 text-center">Créer une action</h1>
+        <form method='POST' action="<?=PATH?>/lions/?page=new_article" enctype="multipart/form-data" class="col s12 m8 l6 offset-l3 offset-m2 form-group ">
 
             <div class="row">
                 <div class="col-lg-12">
@@ -20,15 +23,15 @@
 
                 <div class="col-lg-6 col-sm-12">
                     <label for="last">Date de la derniere édition</label>
-                    <input type=date name=last class="form-control" value="" id="last"><br>
+                    <input type=date name=last class="form-control" value=""  id="last"><br>
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <label for="next">Date de la prochaine édition</label>
-                    <input type=date name='next' value="" class="form-control" id="next"><br>
+                    <input type=date name='next'  class="form-control" value="" id="next"><br>
                 </div>
             </div>
             <div class="row justify-content-between">
-                <input class="" type='submit' name='new_article'>
+                <input class="btn btn-primary" type='submit' name='new_article'>
 
             </div>
         </form>
