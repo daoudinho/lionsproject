@@ -6,6 +6,8 @@ Le site propose une interface publique regroupant les informations suivantes:
 - Actions du club
 - Services du club
 - Formulaire de contact
+
+
 Il propose également une interface membre qui permet de:
 - Mettre à jour ses données utilisateurs
 - Modifier le contenu du site
