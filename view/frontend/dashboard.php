@@ -26,6 +26,12 @@
                 </div>
             </div>
     <?php }; ?>
+            <div class="m-3 row">
+                <h3 class="col-12">Nombre de visiteurs: <?=$compte?></h3>
+            </div>
+            <div class="m-3 row">
+                <h3 class="col-12">Nombre de visiteurs membres: <?=$comptem?></h3>
+            </div>
         </div>
 
     </div>

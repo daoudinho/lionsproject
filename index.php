@@ -2,6 +2,50 @@
 require_once('controller/frontend.php');
 include_once ("config.php");
 try {
+      session_start();
+      // Compteur utilisateurs
+      if(file_exists('compteur_visites.txt'))
+      {
+            $compteur_f = fopen('compteur_visites.txt', 'r+');
+            $compte = fgets($compteur_f);
+      }
+      else
+      {
+            $compteur_f = fopen('compteur_visites.txt', 'a+');
+            $compte = 0;
+      }
+      if(!isset($_SESSION['compteur_de_visite']))
+      {
+            $_SESSION['compteur_de_visite'] = 'visite';
+            $compte++;
+            fseek($compteur_f, 0);
+            fputs($compteur_f, $compte);
+      }
+      fclose($compteur_f);
+      //Compteur membres
+      if(file_exists('compteur_visites_members.txt'))
+      {
+            $compteur_fm = fopen('compteur_visites_members.txt', 'r+');
+            $comptem = fgets($compteur_fm);
+      }
+      else
+      {
+            $compteur_fm = fopen('compteur_visites_members.txt', 'a+');
+            $comptem = 0;
+      }
+      if(isset($_SESSION['id']) || isset($_COOKIE['id'])){
+            if(!isset($_SESSION['compteur_de_visite_members']))
+            {
+                  $_SESSION['compteur_de_visite_members'] = 'visite';
+                  $comptem++;
+                  fseek($compteur_fm, 0);
+                  fputs($compteur_fm, $comptem);
+            }
+            fclose($compteur_fm);
+      };
+
+
+
     if (isset($_GET['page'])) {
 
           //Page with log require
@@ -78,7 +122,7 @@ try {
 
                 //if path to the user dashboard
                 elseif ($_GET['page'] == 'dashboard') {
-                      dashboard($id);
+                      dashboard($id,$compte, $comptem);
                       exit();
                 }
 

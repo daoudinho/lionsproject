@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 function login(){
       $message="";
       if(isset($_GET['succeed'])){
@@ -9,7 +9,7 @@ function login(){
 }
 function logout()
 {
-    session_start();
+    //session_start();
     if(isset($_COOKIE['id']))
     {
         setcookie('id','',time() - 200,'/');
@@ -73,7 +73,7 @@ function loginCheck($email, $password)
      include_once ('view/frontend/subscription_form.php');
  }
 
- function dashboard($id)
+ function dashboard($id,$compte, $comptem)
  {
      include_once ('model/User.php');
      $user = new User();

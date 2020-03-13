@@ -19,7 +19,7 @@ class Login
               echo "<span>Votre compte n'est pas encore activé</span>";
         }elseif(password_verify($password,$stored))
         {
-            session_start();
+            //session_start();
             $_SESSION["id"]=$data["id"];
             if($data['admin']==true){
                     $_SESSION["admin"]=$data["admin"];
