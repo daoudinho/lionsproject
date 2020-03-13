@@ -150,7 +150,7 @@ function editArticle()
     $message="";
     if(isset($_SERVER["REQUEST_METHOD"]) && isset($_FILES["photo"]))
       {
-            include_once ('uploadImage.php');
+            include_once('model/uploadImage.php');
             $message = upload();
             if($message === "Votre fichier a été téléchargé avec succès."){
                   $article = new ArticleManager();
@@ -254,7 +254,7 @@ function editHomepage()
       if(isset($_SERVER["REQUEST_METHOD"]) && isset($_FILES["photo"]))
       {
 
-            include_once ('uploadImage.php');
+            include_once('model/uploadImage.php');
             $message = upload();
             if($message === "Votre fichier a été téléchargé avec succès."){
                   $message = $Homepage->uploadImageDb($_FILES["photo"]["name"],$_POST['id']);
