@@ -60,6 +60,7 @@ function loginCheck($email, $password)
      include_once ('model/ArticleManager.php');
      $aM= new ArticleManager();
      $data=$aM->getArticle($id);
+     $content= nl2br($data['content']);
      include_once ('view/frontend/article_view.php');
  }
  function subscribe()

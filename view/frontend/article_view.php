@@ -20,16 +20,17 @@
     <h1><?php echo $data["title"] ?></h1>
       <?=$statutLast?>
       <?=$statutNext?>
-    <div class="row">
+    <!--<div class="row">
         <div class="col-6">
             <p>
-                  <?php echo $data["content"] ?>
+                  <?php echo $content ?>
             </p>
         </div>
         <div class="col-6">
             <img src="upload/<?php echo $data['file'] ?>" alt="<?php echo $data['file'] ?>" style="max-width: 100%">
         </div>
-    </div>
+    </div>-->
+    <p><img src="upload/<?php echo $data['file'] ?>" alt="<?php echo $data['file'] ?>" style="max-width: 40%; float:right; margin-left:15px"><?php echo $content ?> </p>
 </div>
 
 <?php $content = ob_get_clean();?>
