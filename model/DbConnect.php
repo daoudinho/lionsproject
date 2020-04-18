@@ -8,7 +8,7 @@ class DbConnect
     {
         try
         {
-                $db = new PDO("mysql:host=localhost;dbname=nicedoyen;port=3306;charset=utf8",'root', ADMIN_ACCESS, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+                $db = new PDO("mysql:host=".DB_URL.";dbname=".DB_NAME.";port=3306;charset=utf8",ADMIN_LOG, ADMIN_ACCESS, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
                 $this->db = $db;
         }
         catch (Exception $e)

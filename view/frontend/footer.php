@@ -17,6 +17,7 @@
                         <img src="public/media/logo.gif" width="30" height="30" class="d-inline-block align-top mr-3" alt="logo lions club">
                         <span>Lions Clubs International</span>
                     </a>
+                    <a href="https://www.lions-france.org/les-structures-regionales/2" style="margin-left: 15px" target="_blank">District 103 Côte d'Azur Corse</a>
                 </div>
 
         </div>
@@ -27,7 +28,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
-        <a href="<?=PATH?>/lions/?page=welcome"> Lions Club Nice Doyen - Siege social: Le Majestic - 4 Boulevard de Cimiez - 06000 - Nice</a>
+        <a href="<?=PATH?>?page=welcome"> Lions Club Nice Doyen - Siege social: Le Majestic - 4 Boulevard de Cimiez - 06000 - Nice</a>
     </div>
     <!-- Copyright -->
 

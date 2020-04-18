@@ -7,5 +7,11 @@
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mariadb://localhost:3306/nicedoyen</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="@lionsnicoqndoyen.mysql.db" uuid="08f44ae3-f4c5-4045-9399-134d6fe59bc3">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://lionsnicoqndoyen.mysql.db:3306</jdbc-url>
+    </data-source>
   </component>
 </project>

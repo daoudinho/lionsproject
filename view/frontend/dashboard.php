@@ -10,7 +10,7 @@
             <div class="mt-3 row">
                 <h3 class="col-12">Mon Compte</h3>
                 <div class="col-12">
-                    <a href="<?php echo PATH ?>/lions/?page=edit_user"><button type="button" class="btn btn-primary btn-lg">Modifier mon profil</button></a>
+                    <a href="<?php echo PATH ?>?page=edit_user"><button type="button" class="btn btn-primary btn-lg">Modifier mon profil</button></a>
                     <a href="<?php echo $drive ?>" target="_blank"><button type="button" class="btn btn-primary btn-lg"> Mon drive</button></a>
                 </div>
             </div>
@@ -18,11 +18,11 @@
             <div class=" mt-3 row">
                 <h3 class="col-12">Gestion du site</h3>
                 <div class="col-12">
-                    <a href="<?php echo PATH ?>/lions/?page=homepageManager"><button type="button" class="btn btn-primary btn-lg mt-3">Gestion de la page d'accueil</button></a>
-                    <a href="<?php echo PATH ?>/lions/?page=edit_story"><button type="button" class="btn btn-primary btn-lg mt-3"> Gestion de "Qui sommes-nous ?"</button></a>
-                    <a href="<?php echo PATH ?>/lions/?page=manage_events"><button type="button" class="btn btn-primary btn-lg mt-3"> Gestion des actions</button></a>
-                    <a href="<?php echo PATH ?>/lions/?page=edit_services"><button type="button" class="btn btn-primary btn-lg mt-3"> Gestion des services</button></a>
-                    <a href="<?php echo PATH ?>/lions/?page=adminUser" ><button type="button" class="btn btn-primary btn-lg mt-3" >Gestion des membres</button></a>
+                    <a href="<?php echo PATH ?>?page=homepageManager"><button type="button" class="btn btn-primary btn-lg mt-3">Gestion de la page d'accueil</button></a>
+                    <a href="<?php echo PATH ?>?page=edit_story"><button type="button" class="btn btn-primary btn-lg mt-3"> Gestion de "Qui sommes-nous ?"</button></a>
+                    <a href="<?php echo PATH ?>?page=manage_events"><button type="button" class="btn btn-primary btn-lg mt-3"> Gestion des actions</button></a>
+                    <a href="<?php echo PATH ?>?page=edit_services"><button type="button" class="btn btn-primary btn-lg mt-3"> Gestion des services</button></a>
+                    <a href="<?php echo PATH ?>?page=adminUser" ><button type="button" class="btn btn-primary btn-lg mt-3" >Gestion des membres</button></a>
                 </div>
             </div>
     <?php }; ?>

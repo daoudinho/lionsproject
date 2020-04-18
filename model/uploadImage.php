@@ -14,15 +14,15 @@ function upload(){
                   $ext = pathinfo($filename, PATHINFO_EXTENSION);
                   if (!array_key_exists($ext, $allowed)) die("Erreur : Veuillez sélectionner un format de fichier valide.");
                   // Vérifie la taille du fichier - 5Mo maximum
-                  $maxsize = 5 * 1024 * 1024;
-                  if ($filesize > $maxsize) die("Error: La taille du fichier est supérieure à la limite autorisée.");
+                  //$maxsize = 5 * 1024 * 1024;
+                  //if ($filesize > $maxsize) die("Error: La taille du fichier est supérieure à la limite autorisée.");
                   // Vérifie le type MIME du fichier
                   if (in_array($filetype, $allowed)) {
                         // Vérifie si le fichier existe avant de le télécharger.
                         if (file_exists("upload/" . $_FILES["photo"]["name"])) {
                               return "Votre fichier a été téléchargé avec succès.";
                         } else {
-                              $test=move_uploaded_file($_FILES["photo"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/lions/upload/".$_FILES["photo"]["name"]);
+                              $test=move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/".$_FILES["photo"]["name"]);
                               return "Votre fichier a été téléchargé avec succès.";
                         }
                   } else {
@@ -35,3 +35,4 @@ function upload(){
 }
 
 
+//$_SERVER['DOCUMENT_ROOT'] . 

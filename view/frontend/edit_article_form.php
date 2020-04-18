@@ -5,12 +5,12 @@ if(isset($message)){
     ?><span><?php  echo $message?></span><?php
 }
 ?>
-<a href="<?php echo PATH ?>/lions/?page=manage_events">Retour</a>
+<a href="<?php echo PATH ?>?page=manage_events">Retour</a>
 <div class="container mt-5 mb-5">
     <h1 class="mt-2 mb-4 text-center">Editer une action</h1>
     <div class="row">
         <div class="col-9" >
-                <form method='POST' action="<?=PATH?>/lions/?page=edit_article&id=<?php echo $data['id'] ?>" class="col-12">
+                <form method='POST' action="<?=PATH?>?page=edit_article&id=<?php echo $data['id'] ?>" class="col-12">
                     <div class="row">
                         <div class="col-12">
                             <label for="title">Titre</label>
@@ -21,6 +21,13 @@ if(isset($message)){
                         <div class="col-lg-12">
                             <label for="content">Présentation</label>
                             <textarea type='text' name=content class="form-control" rows="10" id="content" required> <?php echo $data['content']?></textarea><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label for="link">Lien</label>
+                            <input type="checkbox" class="ml-2" name="actif_link" <?php if($data['actif_link']== 1)echo "checked"?>>
+                            <input type='text' name=link value="<?php if($data['link']!= null)echo $data['link']?>" class="form-control" id="link"><br>
                         </div>
                     </div>
                     <div class="row">
@@ -44,7 +51,7 @@ if(isset($message)){
         </div>
         <div class="col-3 p-4" >
             <div class="row">
-                <form action="<?=PATH?>/lions/?page=edit_article&id=<?php echo $data['id'] ?>" method="post" enctype="multipart/form-data">
+                <form action="<?=PATH?>?page=edit_article&id=<?php echo $data['id'] ?>" method="post" enctype="multipart/form-data">
                     <h5>Sélectionner une Image</h5>
                     <label for="fileUpload">Fichier:</label>
                     <input type="file" name="photo" id="fileUpload" required>
@@ -57,6 +64,7 @@ if(isset($message)){
             </div>
 
         </div>
+        <?php include_once("view/frontend/tuto_mise_en_page.php")?>
     </div>
 
 </div>

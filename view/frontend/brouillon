@@ -1,0 +1,10 @@
+if(isset($_POST['submit']))
+{
+$Contact= new ContactManager();
+$Result=$Contact->capctha($captcha);
+if(isset($Result === "OK"){
+$user = new User();
+$user->create_user($_POST['name'],$_POST['email'],$_POST['password'],$_POST['cpassword']);
+}
+
+}
