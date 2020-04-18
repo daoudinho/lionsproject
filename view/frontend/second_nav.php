@@ -3,16 +3,16 @@ $manager = new ArticleManager();
 $articles=$manager->getActifArticles() ?>
 <nav class="navbar navbar-light navbar-expand border justify-content-between" id="second_nav">
 
-        <a class="navbar-brand text-uppercase font-weight-bold row col-4" id="mainTitle" href="<?php echo PATH ?>">
+        <a class="navbar-brand text-uppercase font-weight-bold row col-lg-4 col-md-12" id="mainTitle" href="<?php echo PATH ?>">
             <img src="public/media/logo.gif" class="d-inline-block align-top" width="150" height="150" alt="" href="<?php echo PATH ?>?page=log">
             Nice Doyen
             <img src="public/media/faniontr.gif" id="toggle" class="" width="120" height="150" alt="fanion du club" href="<?php echo PATH ?>?page=log">
         </a>
 
-    <div class="col-7 justify-content-end">
+    <div class="col-lg-7 col-md-12 justify-content-end">
             <ul class="navbar-nav navbar-expand-lg" id="second_navUl">
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase" href="<?php echo PATH ?>">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="<?php echo PATH ?>">test <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-uppercase" href="<?php echo PATH ?>?page=historique">Qui Sommes nous ? <span class="sr-only">(current)</span></a>
