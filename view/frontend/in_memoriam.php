@@ -1,140 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hommage aux Personnes Disparues</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        html {
-            background: linear-gradient(to bottom, #fff, #6D6D6D) fixed;
+        :root {
+            --bg: #f3f1ec;
+            --paper: #fffdf9;
+            --ink: #2b2926;
+            --muted: #6f6a62;
+            --line: #ddd6ca;
+            --accent: #7d6e52;
         }
+
+        html {
+            background: var(--bg);
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 56px 16px 120px;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* Carte centrale */
+        #tribute-container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 56px 64px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            box-shadow: 0 12px 40px rgba(60, 50, 40, .08);
         }
 
         #tribute-content {
             text-align: center;
         }
 
-        /* #tribute-image {
-            max-width: 50%;
+        /* Fondu entre les diapos */
+        #tribute-container {
+            transition: opacity 1s ease-in-out; /* réapparition */
+        }
+        #tribute-container.is-fading {
+            opacity: 0;
+            transition: opacity .45s ease; /* disparition */
+        }
+
+        /* Titres */
+        h1, h2 {
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-weight: 500;
+            letter-spacing: .04em;
+            margin: 0 0 .3em;
+        }
+        h1 {
+            font-size: 2.8rem;
+        }
+        h2 {
+            font-size: 2.3rem;
+        }
+
+        /* Dates, fonctions... sous le nom */
+        #tribute-content > h3 {
+            margin: .1em 0;
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--muted);
+        }
+
+        /* Page d'accueil */
+        .intro h3,
+        #tribute-content.intro > h3 {
+            font-style: italic;
+            font-size: 1.35rem;
+            color: var(--ink);
+            margin: .4em auto;
+            max-width: 620px;
+        }
+        #fanion {
+            display: block;
+            width: 140px;
+            margin: 16px auto 28px;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
             height: auto;
-        } */
-
-        #tribute-text {
-            margin: 20px 0;
+            border-radius: 3px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .12);
+        }
+        .presentation-image {
+            display: block;
+            width: 180px !important;
+            margin: 20px auto 24px;
+            padding: 6px;
+            background: #fff;
+            border: 1px solid var(--line);
+        }
+        .presentation-image-large {
+            width: 280px !important;
         }
 
-        #tribute-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        #tribute-button-left {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        .body-text {
+        /* Bloc de texte sous l'en-tête */
+        #tribute-content > div:not(.images) {
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 1px solid var(--line);
             text-align: left;
-            text-align-last: left;
-            display: flex;
-            height: 100%;
-            /* img {
-                text-align: center; /* Centre horizontalement */
-                /* display: flex; */
-                /* justify-content: center; Centre horizontalement avec Flexbox */
-                /* align-items: center; Centre verticalement avec Flexbox */
-            /* } */ */
         }
         .container {
             display: flex;
-            height: 100%;
+            gap: 36px;
+            align-items: flex-start;
         }
         .text {
             flex: 2;
-            padding: 20px;
-            align-items: center;
         }
         .images {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 20px;
         }
-        img {
-            border: 2px solid #fff; /* Bordure blanche de 2 pixels */
-            border-radius: 10px; /* Coins arrondis de 10 pixels */
+        #tribute-content > .images,
+        #tribute-content > div > .images {
+            margin-top: 32px !important;
         }
+        .image-container img {
+            margin: 0 !important;
+        }
+
+        /* "Témoignages des amis" */
+        #tribute-content > div h3 {
+            margin: 0 0 1em;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-weight: 500;
+            font-size: 1.6rem;
+            text-align: center;
+            letter-spacing: .03em;
+        }
+        #tribute-content > div h3::after {
+            content: "";
+            display: block;
+            width: 48px;
+            margin: .4em auto 0;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        /* Auteurs des témoignages */
+        #tribute-content h4 {
+            margin: 1.8em 0 .4em;
+            font-size: 1.05rem;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        #tribute-content strong {
+            font-style: italic;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        #tribute-content p {
+            margin: 0 0 1em;
+        }
+
+        /* Navigation */
+        .tribute-button {
+            position: fixed;
+            bottom: 24px;
+            padding: 10px 26px;
+            background: rgba(255, 253, 249, .95);
+            color: var(--ink);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            letter-spacing: .05em;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(60, 50, 40, .10);
+            transition: background .2s, color .2s;
+        }
+        .tribute-button:hover,
+        .tribute-button:focus-visible {
+            background: var(--ink);
+            color: var(--paper);
+            outline: none;
+        }
+        #tribute-button {
+            right: 24px;
+        }
+        #tribute-button-left {
+            left: 24px;
+        }
+
+        /* Lecteur audio discret */
         .audio-player {
-            position: fixed; /* Position fixe */
-            top: 10px; /* 10 pixels à partir du haut */
-            right: 10px; /* 10 pixels à partir de la droite */
-            z-index: 999; /* Pour placer le lecteur audio au-dessus du reste du contenu */
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 999;
+            opacity: .5;
+            transition: opacity .3s;
         }
-        h2 {
-            font-size: 2em; /* Augmente la taille de la police de deux fois la taille par défaut */
+        .audio-player:hover {
+            opacity: 1;
         }
-        .text {
-            font-size: 1rem; /* Augmente la taille de la police de deux fois la taille par défaut */
+        .audio-player.is-hidden {
+            display: none;
         }
-        .tribute-button{
-            border: 2px solid #fff !important; /* Bordure blanche de 2 pixels */
-            border-radius: 10px !important; /* Coins arrondis de 10 pixels */
-        }
-        body{
-            margin-bottom: 60px;
+        .audio-player audio {
+            height: 36px;
         }
 
         @media screen and (max-width: 768px) {
-            .container {
-                flex-direction: column;
+            body {
+                padding: 24px 12px 100px;
+                font-size: 1.1rem;
             }
-            .text {
-                text-align: center;
+            #tribute-container {
+                padding: 32px 20px;
+            }
+            h1 {
+                font-size: 2.1rem;
+            }
+            h2 {
+                font-size: 1.9rem;
+            }
+            .container,
+            .image-container {
+                flex-direction: column;
+                align-items: center;
             }
             img {
-                width: 80% !important;
+                width: 90% !important;
+            }
+            .presentation-image {
+                width: 150px !important;
+            }
+            .presentation-image-large {
+                width: 210px !important;
+            }
+            #fanion {
+                width: 110px !important;
             }
             .audio-player {
                 display: none;
             }
-            .image-container {
-                flex-direction: column;
+            #tribute-button {
+                right: 12px;
             }
-            .image2{
-                margin-top: 10px;
-            }
-            #id {
-                width: 50% !important;
+            #tribute-button-left {
+                left: 12px;
             }
         }
     </style>
 </head>
 <body>
     <div id="tribute-container">
-        <div id="tribute-content">
-            <h1>Ne les oublions pas</h2>
-            <img src="/public/media/faniontr.gif" style="width: 20% !important;border:unset !important" id="fanion">
+        <div id="tribute-content" class="intro">
+            <h1>Ne les oublions pas</h1>
+            <img src="public/media/faniontr.gif" alt="Fanion du Lions Club" id="fanion">
             <h3>Une pensée pour nos amis disparus</h3>
             <h3>Souvenons-nous des bons moments passés ensemble, de leurs actions, de leurs qualités et de leurs défauts</h3>
             <h3>Mais ne les oublions pas</h3>
         </div>
     </div>
     
-    <div class="audio-player">
+    <div class="audio-player is-hidden">
         <audio controls autoplay loop id="audio">
-            <source src="/public/media/song/song-1.m4a" type="audio/mpeg">
+            <source src="public/media/song/Ave-maris-stella.mp3" type="audio/mpeg">
             Votre navigateur ne supporte pas l'élément audio.
         </audio>
     </div>
@@ -146,7 +293,7 @@
         const text0 = `
         <div id="tribute-content">
             <h2>Yves-Noel DERENNE</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-100.png" style="width: 30%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-100.png" style="width: 30%;" class="presentation-image presentation-image-large">
             <h3>✝️ 1943 - 26/02/2025</h3>
             <h3>Entrée au club le 01/09/1986</h3>
             <div>
@@ -199,7 +346,7 @@
         const text1 = `
         <div id="tribute-content">
             <h2>Josiane THOMAS</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-12.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-12.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 05/10/2024</h3>
             <h3>Entrée au club le 1/11/2018</h3>
             <div>
@@ -218,7 +365,7 @@
         const text2 = `
         <div id="tribute-content">
             <h2>Bénédicte LEMENICIER</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-13.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-13.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 15/09/2024</h3>
             <h3>Epouse de notre ami Jean</h3>
             <div>
@@ -256,7 +403,7 @@
         const text3 = `
         <div id="tribute-content">
             <h2>Marc TORDO</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-1.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-1.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 16/04/1948 -- 10/05/2023</h3>
             <h3>Entré au club en 1991</h3>
             <h3>Président de zone</h3>
@@ -280,20 +427,20 @@
                             </p>
                         </div>
                         <div class="images">
-                            <img id="tribute-image" src="/public/media/images/in_memoriam/img-2a.jpg" style="width: 70%;">
+                            <img id="tribute-image" src="public/media/images/in_memoriam/img-2a.jpg" style="width: 70%;">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="images" style="margin-top: 20px;">
-                <img id="tribute-image" src="/public/media/images/in_memoriam/img-2b.jpg" style="width: 40%;">
+                <img id="tribute-image" src="public/media/images/in_memoriam/img-2b.jpg" style="width: 40%;">
             </div>
         </div>
         `;
         const text4 = `
         <div id="tribute-content">
             <h2>Gérard AUBRY</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-3a.jpg" alt="" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-3a.jpg" alt="" style="width: 15%;" class="presentation-image">
             <h3>✝️ 02/10/1945  -- 10/05/2023</h3>
             <h3>Entré au club le 1 Juillet 2015</h3>
             <h3>Président des effectifs de 2016 à 2020</h3>
@@ -310,20 +457,20 @@
                             </p>
                         </div>
                         <div class="images">
-                            <img id="tribute-image" src="/public/media/images/in_memoriam/img-3b.jpg" alt="" style="width: 70%;">
+                            <img id="tribute-image" src="public/media/images/in_memoriam/img-3b.jpg" alt="" style="width: 70%;">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="images" style="margin-top: 20px;">
-                <img id="tribute-image" src="/public/media/images/in_memoriam/img-3c.jpg" alt="" style="width: 30%;">
+                <img id="tribute-image" src="public/media/images/in_memoriam/img-3c.jpg" alt="" style="width: 30%;">
             </div>
         </div>
             `;
         const text5 = `
             <div id="tribute-content">
                 <h2>Gerd HERMER</h2>
-                <img id="tribute-image" src="/public/media/images/in_memoriam/img-2.jpg" alt="Personne Disparue 1" style="width: 15%;" class="presentation-image">
+                <img id="tribute-image" src="public/media/images/in_memoriam/img-2.jpg" alt="Personne Disparue 1" style="width: 15%;" class="presentation-image">
                 <h3>✝️ 14/05/43  -- 12/12/2021</h3>
                 <h3>Entré au club en 1993</h3>
                 <h3>Président du club : 1999/2000</h3>
@@ -357,27 +504,27 @@
                     </div>
                 </div>
                 <div class="images" style="margin-top: 20px;">
-                    <img id="tribute-image" src="/public/media/images/in_memoriam/img-4b.jpg" style="width: 50%;">
+                    <img id="tribute-image" src="public/media/images/in_memoriam/img-4b.jpg" style="width: 50%;">
                 </div>
             </div>
             `;
         const text6 = `
         <div id="tribute-content">
             <h2>Roger SUISSA</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-5.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-5.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 12/12/2021</h3>
             <h3>Compagnon de Melvin Jones</h3>
             <h3>Entré au club en 1987</h3>
             <h3>Président du club : 2004</h3>
             <div class="images">
-                <img id="tribute-image" src="/public/media/images/in_memoriam/img-5b.jpg" style="width: 70%;">
+                <img id="tribute-image" src="public/media/images/in_memoriam/img-5b.jpg" style="width: 70%;">
             </div>
         </div>
             `;
         const text7 = `
         <div id="tribute-content">
             <h2>Leo Vander Laenen</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-6.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-6.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 24/06/1928  -- 16/02/2020</h3>
             <div>
                 <div class="body-text">
@@ -398,7 +545,7 @@
                             </p>
                         </div>
                         <div class="images">
-                            <img id="tribute-image" src="/public/media/images/in_memoriam/img-6b.jpg" style="width: 50%;">
+                            <img id="tribute-image" src="public/media/images/in_memoriam/img-6b.jpg" style="width: 50%;">
                         </div>
                     </div>
                 </div>
@@ -408,19 +555,20 @@
         const text8 = `
         <div id="tribute-content">
             <h2>Henri Helly</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-7a.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-7a.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 30/06/2016</h3>
             <h3>Entré au club en 1969</h3>
             <h3>Président du club : 1980</h3>
             <div class="images">
-                <img id="tribute-image" src="/public/media/images/in_memoriam/img-7b.jpg" style="width: 70%;">
+                <img id="tribute-image" src="public/media/images/in_memoriam/img-7b.jpg" style="width: 70%;">
             </div>
         </div>
             `;
         const text9 = `
         <div id="tribute-content">
-            <h2>Jean Paul Cesson <h3>dit JPC</h3></h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-8.jpg" style="width: 15%;" class="presentation-image">
+            <h2>Jean Paul Cesson</h2>
+            <h3>dit JPC</h3>
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-8.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 29/08/2016</h3>
             <h3>Entré au club en 1985</h3>
             <h3>Président du club : 1996/1997</h3>
@@ -440,20 +588,20 @@
                             </p>
                         </div>
                         <div class="images">
-                            <img id="tribute-image" src="/public/media/images/in_memoriam/img-8b.jpg" style="width: 80%;">
+                            <img id="tribute-image" src="public/media/images/in_memoriam/img-8b.jpg" style="width: 80%;">
                         </div>
                     </div>
             </div>
             <div class="images image-container" style="margin-top: 20px;align-items: top !important;">
-                <img id="tribute-image" src="/public/media/images/in_memoriam/img-8c.jpg" style="width: 40%;margin:0 10px">
-                <img id="tribute-image" src="/public/media/images/in_memoriam/img-8d.jpg" style="width: 40%;margin:0 10px" class="image2">
+                <img id="tribute-image" src="public/media/images/in_memoriam/img-8c.jpg" style="width: 40%;margin:0 10px">
+                <img id="tribute-image" src="public/media/images/in_memoriam/img-8d.jpg" style="width: 40%;margin:0 10px" class="image2">
             </div>
         </div>
             `;
         const text10 = `
         <div id="tribute-content">
             <h2>Jacques Cornil</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-9.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-9.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 27/08/2016</h3>
             <h3>Entré au club en 1963</h3>
             <h3>Président du club : 1977</h3>
@@ -462,14 +610,14 @@
         const text11 = `
         <div id="tribute-content">
             <h2>Thomas Castellano</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-10.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-10.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 10/12/2017</h3>
             </div>
             `;
         const text12 = `
         <div id="tribute-content">
             <h2>Jacques Estadas</h2>
-            <img id="tribute-image" src="/public/media/images/in_memoriam/img-11.jpg" style="width: 15%;" class="presentation-image">
+            <img id="tribute-image" src="public/media/images/in_memoriam/img-11.jpg" style="width: 15%;" class="presentation-image">
             <h3>✝️ 26/08/2016</h3>
             <h3>Entré au club en 1956</h3>
             <h3>Président du club : 1979</h3>
@@ -502,9 +650,31 @@
         const tributeButton = document.getElementById('tribute-button');
         const tributeButtonLeft = document.getElementById('tribute-button-left');
 
+        let fadeTimer = null;
+
+        function showTribute() {
+            // Fondu sortant, changement de contenu, puis fondu entrant
+            clearTimeout(fadeTimer);
+            tributeText.classList.add('is-fading');
+            fadeTimer = setTimeout(() => {
+                tributeText.innerHTML = texts[currentIndex];
+                window.scrollTo({ top: 0 });
+                // Laisse le navigateur afficher le nouveau contenu avant de lancer le fondu entrant
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    tributeText.classList.remove('is-fading');
+                }));
+            }, 450);
+        }
+
         tributeButton.addEventListener('click', () => {
+            // Lance la musique en quittant la page d'accueil si elle n'est pas déjà en cours
+            if (currentIndex == -1 && audioElement.paused) {
+                audioElement.play();
+            }
+            // Le lecteur reste visible une fois la page d'accueil quittée
+            document.querySelector('.audio-player').classList.remove('is-hidden');
             currentIndex = (currentIndex + 1) % texts.length;
-            tributeText.innerHTML = texts[currentIndex];
+            showTribute();
         });
         tributeButtonLeft.addEventListener('click', () => {
             if (currentIndex == -1) {
@@ -515,8 +685,8 @@
             }else {
                 currentIndex = (currentIndex - 1) % texts.length;
             }
-        
-            tributeText.innerHTML = texts[currentIndex];
+
+            showTribute();
         });
         let audioPlay = false;
         const audioElement = document.getElementById('audio');
