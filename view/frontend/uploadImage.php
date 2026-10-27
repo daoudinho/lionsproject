@@ -7,7 +7,7 @@ if( !empty($message) )
     echo "\t</p>\n\n";
 }
 ?>
-    <form action="'.PATH.'/lions/?page=manage_events" method="post" enctype="multipart/form-data">
+    <form action="'.PATH.'?page=manage_events" method="post" enctype="multipart/form-data">
         <h2>Upload Fichier</h2>
         <label for="fileUpload">Fichier:</label>
         <input type="file" name="photo" id="fileUpload">

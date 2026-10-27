@@ -1,33 +1,272 @@
+
+/*barre de nav*/
 #second_nav{
     height: 200px;
 }
-#mainTitle{
-    color: #1a16ff;
-    font-size: 40px;
+
+/*navbar*/
+#navbar{
 }
-#second_navUl a{
-    color: #1a16ff;
-    font-size: 17px;
+/*image de la page d'accueil*/
+#slide{
+    height:750px;
 }
 
-.accueil{
-    min-height: 1000px;
+#logo-footer{
+    width:30px ;
+    height:30px;
 }
+
+#logo-facebook{
+
+    width:30px ;
+    height:30px;
+}
+/*texte sur image de la page d'accueil*/
 .white-font{
     background-color: white;
-    opacity: 0.5;
+    opacity: 1;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 30%;
+    //height: 15%;
 }
-.carousel-caption h4, p{
+/*texte sur image de la page d'accueil*/
+.white-font-text1{
+    background-color: white;
+    box-shadow: 5px 5px;
+    border-radius: 10px;
+    align-self: center;
+    padding: 10px;
+}
+/*texte sur image de la page d'accueil*/
+.white-font-text{
+    background-color: white;
+    box-shadow: 5px 5px;
+    border-radius: 3px;
+    align-self: center;
+}
+/*zone global texte sur image de la page d'accueil*/
+.carousel-caption{
+    display: flex ;
+    align-items: flex-start;
+    flex-direction: column;
+    opacity: 0.8;
+}
+.carousel-caption h4,h1,h2,h3, p{
     color:black;
 }
 
-body{
+#template, html{
     height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+#main{
+    min-height: 100%;
+    position: relative;
+}
+#content{
+    padding-bottom: 140px;
+}
+#footer{
+    height: 140px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+/*body{
+    height: 100%;
+}*/
+/*fanion club navbar 2*/
+#toggle{
+    width:120px ;
+    height:150px
+}
+/*logo du club*/
+#logo-lions{
+    width:150px ;
+    height:150px
+}
+/*titre navbar2*/
+#mainTitle{
+    color: #1a16ff;
+    font-size: 37px;
+}
+/*bouton navbar2*/
+#second_navUl a{
+    color: #1a16ff;
+    font-size: 15px;
+}
+@media screen and (max-width: 1421px)
+{
+    #toggle{
+        width:100px ;
+        height:120px
+    }
+    #logo-lions{
+        width:120px ;
+        height:120px
+    }
+    #second_navUl a{
+        font-size: 12px;
+    }
+    #mainTitle{
+        font-size: 32px;
+    }
+}
+@media screen and (max-width: 1086px)
+{
+    #toggle{
+        width:80px ;
+        height:100px
+    }
+    #logo-lions{
+        width:100px ;
+        height:100px
+    }
+    #second_navUl a{
+        font-size: 10px;
+    }
+    #mainTitle{
+        font-size: 32px;
+    }
+}
+@media screen and (max-width: 500px)
+{
+    #toggle{
+        width:50px ;
+        height:70px
+    }
+    #logo-lions{
+        width:70px ;
+        height:70px;
+    }
+    #second_navUl a{
+        font-size: 7px;
+    }
+    #mainTitle{
+        font-size: 26px;
+    }
+    #slide{
+        height:300px;
+    }
+    #navbar{
+        height: 25px;
+        font-size: 14px;
+    }
+    .white-font-text1{
+        font-size: 12px;
+    }
+    .carousel-caption p{
+        font-size: 9px;
+    }
+    #footer{
+        font-size: 8px;
+    }
+    #logo-footer,#logo-facebook {
+        width:20px ;
+        height:20px;
+    }
+    /*texte de la page login*/
+    .login-txt{
+        font-size: 12px;
+    }
+    .h1-content{
+        font-size: 18px;
+    }
+    .txt-content{
+        font-size: 10px;
+    }
+    .txt-content > h1{
+        font-size: 15px;
+    }
+    .txt-content > h2{
+        font-size: 15px;
+    }
+    #content{
+        min-height: 100%;
+        margin-bottom: -90px;
+    }
+    #template{
+        min-width: 320px;
+    }
+
+    #content:after , #footer{
+        height: 90px;
+    }
+    #sub-nav{
+        font-size: 13px !important;
+
+    }
+}
+@media (max-device-width: 480px) and (max-device-height: 850px)
+{
+    #toggle{
+        width:50px ;
+        height:70px
+    }
+    #logo-lions{
+        width:70px ;
+        height:70px;
+    }
+    #second_navUl a{
+        font-size: 7px;
+    }
+    #mainTitle{
+        font-size: 26px;
+    }
+    #slide{
+        height:300px;
+    }
+    #navbar{
+        height: 20px;
+        font-size: 12px;
+    }
+    .white-font-text1{
+        font-size: 12px;
+    }
+    .carousel-caption p{
+        font-size: 9px;
+    }
+    #footer{
+        font-size: 8px;
+    }
+    #logo-footer,#logo-facebook {
+        width:20px ;
+        height:20px;
+    }
+    /*texte de la page login*/
+    .login-txt{
+        font-size: 12px;
+    }
+    .h1-content{
+        font-size: 18px;
+    }
+    .txt-content{
+        font-size: 10px;
+    }
+    .txt-content > h1{
+        font-size: 15px;
+    }
+    .txt-content > h2{
+        font-size: 15px;
+    }
+    #content{
+        min-height: 100%;
+        margin-bottom: -90px;
+    }
+
+    #content:after , #footer{
+        height: 90px;
+    }
+    #sub-nav{
+        font-size: 13px !important;
+    }
 }
 
 

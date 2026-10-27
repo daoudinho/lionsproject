@@ -4,7 +4,7 @@
 $path = $rest = substr(PATH, 0, -1);
 $path ="'.$path .'";
 ?>
-    <a href="<?php echo PATH ?>/lions/?page=dashboard">Retour</a>
+    <a href="<?php echo PATH ?>?page=dashboard">Retour</a>
 
 
 <div class="justify-content-md-center ml-3 mr-3 row">
@@ -27,14 +27,15 @@ $path ="'.$path .'";
                 <p>Quand une news n'est pas active, elle n'apparait pas sur la page d'accueil.</p>
                 <p class="mb-4">
                 Enfin l'onglet "Action" permet de relier la news avec une action. Cela aura pour effet de créer un lien cliquable vers l'action selectionée.</p>
-                <form action='<?php PATH?>/lions/?page=edit_homepage' method="post">
+                  <?php include_once("view/frontend/tuto_mise_en_page.php")?>
+                <form action='<?php PATH?>?page=edit_homepage' method="post">
                     <input type="submit" class="btn btn-primary btn-lg" value="Créer une News" name="create">
                 </form>
       <?php
       $i=1;
       foreach ($homepage_data as $new)
       {?>
-                <form action='<?php PATH?>/lions/?page=edit_homepage' method="post" enctype="multipart/form-data">
+                <form action='<?php PATH?>?page=edit_homepage' method="post" enctype="multipart/form-data">
                   <div class="card mt-4">
                         <div class="card-header">
                               <h2>News <?php echo $i ?></h2>
@@ -69,7 +70,7 @@ $path ="'.$path .'";
                                     </div>
 
                                     <div class="col-12 mt-2 mb-4">
-                                          <form action="'.PATH.'/lions/?page=edit_homepage" method="post" enctype="multipart/form-data">
+                                          <form action="'.PATH.'?page=edit_homepage" method="post" enctype="multipart/form-data">
                                                 <h5>Sélectionner une Image</h5>
                                                 <label for="fileUpload">Fichier:</label>
                                                 <input type="file" name="photo" id="fileUpload">
@@ -79,7 +80,7 @@ $path ="'.$path .'";
                                     </div>
                                   <div class="row justify-content-between m-2">
                                       <input type="submit" class="btn btn-primary" value="Valider" name="news" >
-                                          <btn type="submit" class="btn btn-danger" value="Supprimer" name="delete" onclick="confirmation(<?=$new['id']?>,<?php echo $path ?>)">Supprimer</btn>
+                                          <span class="btn btn-danger" value="Supprimer" name="delete" onclick="confirmation(<?=$new['id']?>,<?php echo $path ?>)">Supprimer</span>
                                   </div>
                               </div>
                               <div class="col-2">
@@ -108,7 +109,7 @@ $path ="'.$path .'";
               l--;
               l--;
               let path3=path1.substr(0,l)
-              let url= path3+"/lions/?page=edit_homepage&delete="+id;
+              let url= path3+"?page=edit_homepage&delete="+id;
               document.location.href=url;
           } else {
               console.log("annuler");

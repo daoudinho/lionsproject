@@ -108,11 +108,18 @@ try {
                             editStory();
                             exit();
                       }
+                      elseif ($_GET['page'] == 'edit_invitation') {
+                            editInvitation();
+                            exit();
+                      }
+                      elseif($_GET['page'] == 'compteur'){
+                            rmz();
+                      }
                 }
                 // if chemin pour page identification
                 if ($_GET['page'] == 'log') {
                       //if déja log avec session ou cookie
-                            header('Location:'.PATH .'/lions/?page=dashboard');
+                            header('Location:'.PATH .'/?page=dashboard');
                       }
                 //if path to edit user data
                 elseif ($_GET['page'] == 'edit_user') {
@@ -139,14 +146,21 @@ try {
           if ($_GET['page'] == 'log') {
                 //if en cours de connexion
                 if (isset($_POST['login'])) {
-                      loginCheck($_POST['email'], $_POST['password']);
+                      loginCheck($_POST['email'], $_POST['password'],$_POST["g-recaptcha-response"]);
                 } //if souhaite se connecter
                 else {
                             login();
                       }
           }//if subscription path
           elseif ($_GET['page'] == 'newlog') {
-                subscribe();
+                if(isset($_POST['submit']))
+                {
+                      //var_dump($_POST["g-recaptcha-response"]);
+                  subscribe($_POST["g-recaptcha-response"]);
+                }else{
+                      subscribeForm();
+                }
+
           }
 
           //if path to the articles
@@ -191,14 +205,20 @@ try {
           elseif ($_GET['page'] == 'cotisation') {
                 historique();
           }
+          elseif ($_GET['page'] == 'Rapport') {
+                header('Location:./public/media/Rapport.pdf');
+          }
+	  elseif ($_GET['page'] == 'In_memoriam') {
+                  inMemoriam();
+          }
           //if there is no path
           else {
-                header('Location:'.PATH.'/lions/?page=welcome');
+                header('Location:'.PATH.'/?page=welcome');
           }
 
     }
     else {
-          header('Location:'.PATH.'/lions/?page=welcome');
+          header('Location:'.PATH.'/?page=welcome');
     }
 
 }

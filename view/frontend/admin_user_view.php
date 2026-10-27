@@ -1,7 +1,7 @@
 <?php $title ="Administration des membres";?>
 
 <?php ob_start();?>
-      <a href="<?php echo PATH ?>/lions/?page=dashboard">Retour</a>
+      <a href="<?php echo PATH ?>?page=dashboard">Retour</a>
         <?php
         $path = $rest = substr(PATH, 0, -1);
         $path ="'.$path .'";
@@ -23,7 +23,7 @@
                   <?php
                   foreach ($user_data as $user)
                   {?>
-                        <form action='<?php PATH?>/lions/?page=adminUser' method="post">
+                        <form action='<?php PATH?>?page=adminUser' method="post">
                               <div class="card mt-4">
                                     <div class="card-header">
                                         <div class="row justify-content-between">
@@ -54,7 +54,7 @@
                                                 <div class="row justify-content-between m-2">
                                                       <input type="submit" class="btn btn-primary" value="Valider" name="editadminuser" >
                                                     <input type="submit" class="btn btn-primary" value="Réinitialiser le mot de passe" name="newMp" >
-                                                      <btn type="submit" class="btn btn-danger" value="Supprimer" name="delete" onclick="confirmation(<?=$user['id']?>,<?php echo $path; ?>)">Supprimer</btn>
+                                                      <span class="btn btn-danger" value="Supprimer" name="delete" onclick="confirmation(<?=$user['id']?>,<?php echo $path; ?>)">Supprimer</span>
                                                 </div>
                                           </div>
                                     </div>
@@ -68,13 +68,14 @@
       </div>
       <script type="text/javascript">
           function confirmation(id, path){
-              if (confirm("Voulez-vous vraiment supprimer l'article ?")) {
+              if (confirm("Voulez-vous vraiment supprimer l'utilisateur ?")) {
                   let path1=path.substr(1);
                   let l=path1.length;
                   l--;
                   l--;
                   let path3=path1.substr(0,l)
-                  let url= path3+"/lions/?page=adminUser&delete="+id;
+                  let url= path3+"?page=adminUser&delete="+id;
+                  console.log(url);
                   document.location.href=url;
               } else {
                   console.log("annuler");

@@ -2,9 +2,8 @@
 ?>
 
 <?php ob_start();?>
-<div class="container " style="margin-top: 50px;
-    margin-bottom: 500px;">
-      <h1 class="mb-5 text-center text-uppercase">Les services du Lions Club Nice Doyen</h1>
+<div class="container txt-content" style="margin-top: 50px">
+      <h1 class="mb-5 text-center text-uppercase h1-content">Les services du Lions Club Nice Doyen</h1>
       <p>
             <?php echo $data ?>
       </p>

@@ -3,7 +3,7 @@
 function login(){
       $message="";
       if(isset($_GET['succeed'])){
-            $message= "<span>Inscription reussie !</span>";
+            $message= "<span>Inscription reussie ! En attente de validation.</span>";
       }
     include_once ("view/frontend/login-form.php");
 }
@@ -26,14 +26,21 @@ function logout()
         session_destroy();
     }
 
-    header('Location:'.PATH.'/lions/');
+    header('Location:'.PATH.'/');
 }
-function loginCheck($email, $password)
+function loginCheck($email, $password,$captcha)
 {
     include_once ("model/Login.php");
-    $login= new Login();
-    $login->log($email, $password);
-    $message="";
+    include_once ('model/ContactManager.php');
+    include_once ('model/recaptchalib.php');
+    $Contact= new ContactManager();
+    $Result=$Contact->capctha($captcha);
+
+    if($Result === "OK")
+    {
+      $login= new Login();
+      $message=$login->log($email, $password);
+    }
     include_once ("view/frontend/login-form.php");
 
 }
@@ -63,16 +70,28 @@ function loginCheck($email, $password)
      $content= nl2br($data['content']);
      include_once ('view/frontend/article_view.php');
  }
- function subscribe()
+ function subscribe($captcha)
  {
-     include_once ('model/UserManager.php');
+
      if(isset($_POST['submit']))
      {
-         $user = new User();
-         $user->create_user($_POST['name'],$_POST['email'],$_POST['password'],$_POST['cpassword']);
+           include_once ('model/ContactManager.php');
+           include_once ('model/recaptchalib.php');
+           $Contact= new ContactManager();
+           $Result=$Contact->capctha($captcha);
+
+           if($Result === "OK"){
+                 include_once ('model/UserManager.php');
+                 $user = new User();
+                 $user->create_user($_POST['name'],$_POST['email'],$_POST['password'],$_POST['cpassword']);
+           }
      }
      include_once ('view/frontend/subscription_form.php');
  }
+function subscribeForm()
+{
+      include_once ('view/frontend/subscription_form.php');
+}
 
  function dashboard($id,$compte, $comptem)
  {
@@ -116,8 +135,10 @@ function writeArticle()
         include_once ('model/ArticleManager.php');
         $article = new ArticleManager();
         $title = htmlspecialchars($_POST['title']);
-        $content = htmlspecialchars($_POST['content']);
+        //$content = htmlspecialchars($_POST['content']);
+          $content = $_POST['content'];
         $last = htmlspecialchars($_POST['last']);
+        $link = htmlspecialchars($_POST['link']);
         if($last==""){
               $last=date("Y/m/d");
         }
@@ -125,8 +146,12 @@ function writeArticle()
         if($next==""){
               $next=date("Y/m/d");
         }
-        $article->createEvent($title, $content, $last,$next);
-        header('Location:'.PATH.'/lions/?page=manage_events');
+          if($link==""){
+                $actif_link=0;
+                $link=null;
+          }
+        $article->createEvent($title, $content, $last,$next,$link, $actif_link);
+        header('Location:'.PATH.'/?page=manage_events');
     }else
         include_once ('view/frontend/article_form.php');
 
@@ -138,6 +163,21 @@ function editArticle()
     $article = new ArticleManager();
     $id = htmlspecialchars($_GET['id']);
     $data=$article->getArticle($id);
+
+      if(isset($_POST['link'])){
+          $link = htmlspecialchars($_POST['link']);
+            if($link==""){
+                  $link=null;
+                  $actif_link=0;
+            } else{
+                  if(isset($_POST['actif_link'])){
+                        $actif_link=1;
+                  }else{
+                        $actif_link=0;
+                  }
+            }
+      }
+
       if(isset($_POST['actif_next'])){
             $actifNext=true;
       }else{
@@ -148,6 +188,8 @@ function editArticle()
       }else{
             $actifLast=0;
       }
+
+
     $message="";
     if(isset($_SERVER["REQUEST_METHOD"]) && isset($_FILES["photo"]))
       {
@@ -156,18 +198,19 @@ function editArticle()
             if($message === "Votre fichier a été téléchargé avec succès."){
                   $article = new ArticleManager();
                   $message = $article->uploadImageDb($_FILES["photo"]["name"],$id);
-                  header('Location:'.PATH.'/lions/?page=edit_article&id='.$id.'');
+                  header('Location:'.PATH.'/?page=edit_article&id='.$id.'');
             }
       }
     if(isset($_POST['edit_article']))
     {
         $article = new ArticleManager();
         $title = htmlspecialchars($_POST['title']);
-        $content = htmlspecialchars($_POST['content']);
+        //$content = htmlspecialchars($_POST['content']);
+        $content = $_POST['content'];
         $last = htmlspecialchars($_POST['last']);
         $next = htmlspecialchars($_POST['next']);
-        $message = $article->editEvent($title, $content, $last,$next,$id, $actifLast, $actifNext);
-          header('Location:'.PATH.'/lions/?page=manage_events');
+        $message = $article->editEvent($title, $content, $last,$next,$id, $actifLast, $actifNext, $link, $actif_link);
+          header('Location:'.PATH.'/?page=edit_article&id='.$id);
     }
     include_once ('view/frontend/edit_article_form.php');
 }
@@ -180,7 +223,7 @@ function eventsManager()
     if(isset($_GET['delete'])){
           $id=htmlspecialchars($_GET['delete']);
           $message=$managers->deleteArticle($id);
-          header('Location:'.PATH.'/lions/?page=manage_events');
+          header('Location:'.PATH.'/?page=manage_events');
     }
       if(isset($_GET['actif'])){
             $actif=htmlspecialchars($_GET['actif']);
@@ -191,7 +234,7 @@ function eventsManager()
             }
             $id=htmlspecialchars($_GET['id']);
             $message=$managers->toggleEvent($id, $actif);
-            header('Location:'.PATH.'/lions/?page=manage_events');
+            header('Location:'.PATH.'/?page=manage_events');
       }
     include_once ('view/frontend/events_manager_view.php');
 }
@@ -208,16 +251,33 @@ function sendContact($firstname, $lastname, $email, $mobile, $content, $captcha)
       include_once ('model/recaptchalib.php');
       $Contact= new ContactManager();
       $Result=$Contact->capctha($captcha);
-      if($Result != "OK")
+      if($Result === "OK")
       {
             $Result= $Contact->sendmail($firstname, $lastname, $email, $mobile, $content);
       }
       include_once ('view/frontend/contact_form.php');
 }
+
 function invitation()
 {
+      include_once ('model/OthersManager.php');
+      $invitation = new OthersManager();
+      $data=$invitation->getInvitation();
+      $data= nl2br($data["content"]);
       include_once ('view/frontend/invitation_view.php');
 }
+function EditInvitation(){
+      include_once ('model/OthersManager.php');
+      $story = new OthersManager();
+      $data=$story->getInvitation();
+      if(isset($_POST['edit_invitation'])){
+            $content = $_POST['content'];
+            $story->editInvitation($content);
+            header('Location:'.PATH.'/?page=edit_invitation');
+      }
+      include_once ('view/frontend/edit_invitation.php');
+}
+
 function editHomepage()
 {
       if(isset($_POST['title'])){
@@ -226,7 +286,7 @@ function editHomepage()
             $title=null;
       }
       if(isset($_POST['content'])){
-            $content=htmlspecialchars($_POST['content']);
+            $content=$_POST['content'];
       }else{
             $content=null;
       }
@@ -269,7 +329,7 @@ function editHomepage()
       if (isset($_POST['news'])){
             $Homepage->editEvent($title, $content, $relatedArticle,$id, $actif);
       }
-      header('Location:'.PATH.'/lions/?page=homepageManager');
+      header('Location:'.PATH.'/?page=homepageManager');
 }
 
 function homepageManager()
@@ -343,9 +403,10 @@ function EditServices(){
       $services = new OthersManager();
       $data=$services->getServices();
       if(isset($_POST['edit_services'])){
-            $content= htmlspecialchars($_POST['content']);
+            //$content= htmlspecialchars($_POST['content']);
+            $content = $_POST['content'];
             $services->editServices($content);
-            header('Location:'.PATH.'/lions/?page=edit_services');
+            header('Location:'.PATH.'/?page=edit_services');
       }
       include_once ('view/frontend/edit_services.php');
 }
@@ -369,11 +430,36 @@ function historique(){
 function EditStory(){
       include_once ('model/OthersManager.php');
       $story = new OthersManager();
-      $data=$services->getStory();
+      $data=$story->getStory();
       if(isset($_POST['edit_story'])){
-            $content= htmlspecialchars($_POST['content']);
+            //$content= htmlspecialchars($_POST['content']);
+            $content = $_POST['content'];
             $story->editStory($content);
-            header('Location:'.PATH.'/lions/?page=edit_story');
+            header('Location:'.PATH.'/?page=edit_story');
       }
       include_once ('view/frontend/edit_story.php');
+}
+
+function rmz(){
+
+      if($_GET['rmz'] == 'guest'){
+            $compteur_f = fopen('compteur_visites.txt', 'w+');
+            //$compte = fgets($compteur_f);
+            //fseek($compteur_f,0);
+            fputs($compteur_f, "0");
+            fclose($compteur_f);
+      }elseif($_GET['rmz'] == 'member'){
+            $compteur_fm = fopen('compteur_visites_members.txt', 'w+');
+            //$comptem = fgets($compteur_fm);
+            //fseek($compteur_fm, 0);
+            fputs($compteur_fm, "0");
+            fclose($compteur_fm);
+      }
+
+      //header('Location:'.PATH.'/?page=dashboard');
+
+}
+
+function inMemoriam() {
+      include_once ('view/frontend/in_memoriam.php');
 }

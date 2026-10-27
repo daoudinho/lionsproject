@@ -35,22 +35,24 @@ class ArticleManager extends DbConnect
         return $data;
     }
 
-    public function createEvent($title, $content, $last, $next)
+    public function createEvent($title, $content, $last, $next, $link, $actif_link)
     {
-        $req=$this->getDb()->prepare('INSERT INTO articles (title, content, last_edition, next_edition) VALUES (:title, :content, :last_edition, :next_edition)');
+        $req=$this->getDb()->prepare('INSERT INTO articles (title, content, last_edition, next_edition, link, actif_link) VALUES (:title, :content, :last_edition, :next_edition, :link, :actif_link)');
         $req->execute(array(
             "title" => $title,
             "content" => $content,
             "last_edition" => $last,
             "next_edition" => $next,
+              "link"=>$link,
+              "actif_link"=>$actif_link
         ));
     }
 
 
 
-    public function editEvent($title, $content, $last, $next, $id, $actifLast, $actifNext)
+    public function editEvent($title, $content, $last, $next, $id, $actifLast, $actifNext, $link, $actif_link)
     {
-        $req=$this->getDb()->prepare('UPDATE articles SET title =:title, content=:content, last_edition=:last_edition, next_edition=:next_edition, actif_last=:actif_last, actif_next=:actif_next WHERE id= :id ');
+        $req=$this->getDb()->prepare('UPDATE articles SET title =:title, content=:content, last_edition=:last_edition, next_edition=:next_edition, actif_last=:actif_last, actif_next=:actif_next, link=:link, actif_link=:actif_link WHERE id= :id ');
         $req->execute(array(
             "title" => $title,
             "content" => $content,
@@ -59,6 +61,8 @@ class ArticleManager extends DbConnect
             "id"=> $id,
               "actif_last"=>$actifLast,
               "actif_next"=>$actifNext,
+              "link"=>$link,
+              "actif_link"=>$actif_link
         ));
         return ("L'article à été mise à jour");
     }

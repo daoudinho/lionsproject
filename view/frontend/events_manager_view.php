@@ -4,7 +4,7 @@
 
 $path = $rest = substr(PATH, 0, -1);
 $path ="'.$path .'";?>
-<a href="<?php echo PATH ?>/lions/?page=dashboard">Retour</a>
+<a href="<?php echo PATH ?>?page=dashboard">Retour</a>
         <div class="justify-content-md-center ml-3 mr-3 row" id="test">
             <h1 class="">Les Actions du Lions club nice Doyen</h1>
         </div>
@@ -14,7 +14,7 @@ $path ="'.$path .'";?>
                 Vous avez la possibilité de créer une nouvelle action avec le bouton "Créer une action".
                 Une fois celle-ci crée, elle apparaitra ci-dessous dans la liste des actions. Vous aurez alors la possibilité de l'éditer (Titre, texte, date, photo) de l'activer/desactiver
                 ou de l'effacer.</p>
-            <a href="<?php echo PATH ?>/lions/?page=new_article"><button type="button" class="btn btn-primary btn-lg" >Créer une Action</button></a>
+            <a href="<?php echo PATH ?>?page=new_article"><button type="button" class="btn btn-primary btn-lg" >Créer une Action</button></a>
         </div>
     </div>
         <div class="justify-content-md-center ml-3 mr-3 mb-5 row">
@@ -45,7 +45,7 @@ $path ="'.$path .'";?>
                         <div class="card-header">
                             <div class="row w-100 justify-content-between">
                               <h2 class="ml-4"><?php echo $data['title']?></h2>
-                                <a class="float-right" href="<?=PATH ?>/lions/?page=manage_events&actif=<?=$data['actif']?>&id=<?=$data['id']?>"><btn class="btn <?=$btn ?>"><?=$statut ?></btn></a>
+                                <a class="float-right" href="<?=PATH ?>?page=manage_events&actif=<?=$data['actif']?>&id=<?=$data['id']?>"><btn class="btn <?=$btn ?>"><?=$statut ?></btn></a>
                             </div>
                         </div>
                         <div class="card-body row">
@@ -63,8 +63,8 @@ $path ="'.$path .'";?>
                                   }
                                   ?>
                                 <div class="row">
-                                    <a href="<?php echo PATH ?>/lions/?page=edit_article&id=<?php echo $data['id'] ?>" class="btn btn-primary m-2">Editer</a>
-                                    <btn type="submit" class="btn btn-danger m-2" value="Supprimer" name="delete" onclick="confirmation(<?=$data['id']?>,<?php echo $path ?>)">Supprimer</btn>
+                                    <a href="<?php echo PATH ?>?page=edit_article&id=<?php echo $data['id'] ?>" class="btn btn-primary m-2">Editer</a>
+                                    <span class="btn btn-danger m-2" value="Supprimer" name="delete" onclick="confirmation(<?=$data['id']?>,<?php echo $path ?>)">Supprimer</span>
                                 </div>
 
 
@@ -86,7 +86,7 @@ $path ="'.$path .'";?>
                         l--;
                         l--;
                         let path3=path1.substr(0,l)
-                        let url= path3+"/lions/?page=manage_events&delete="+id;
+                        let url= path3+"?page=manage_events&delete="+id;
                         document.location.href=url;
                     } else {
                         console.log("annuler");

@@ -2,7 +2,7 @@
 
 <?php ob_start();
 echo $message;?>
-    <a href="<?php echo PATH ?>/lions/?page=welcome">Retour</a>
+    <a href="<?php echo PATH ?>?page=welcome">Retour</a>
 
      <div class="container" style="margin-top: 100px;
     margin-bottom: 300px;">

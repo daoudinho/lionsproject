@@ -23,7 +23,7 @@ class User extends DbConnect
                 include_once "ContactManager.php";
                 $contact = new ContactManager();
                 $contact->newUser($email,$name);
-                header('Location:'.PATH.'/lions/?page=log&succeed=yes');
+                header('Location:'.PATH.'/?page=log&succeed=yes');
             }
             else
             {
@@ -74,7 +74,7 @@ class User extends DbConnect
                 'email' => $email,
                 'id' => $id
             ));
-            header('Location:'.PATH.'/lions/?page=edit_user&action=succeed');
+            header('Location:'.PATH.'/?page=edit_user&action=succeed');
         }else{
             echo "<span>Bad password</span>";
         }
@@ -100,7 +100,7 @@ class User extends DbConnect
                     'password'=>$password,
                     'id'=>$id
                 ));
-                header('Location:'.PATH.'/lions/?page=edit_user&action=succeed');
+                header('Location:'.PATH.'/?page=edit_user&action=succeed');
             }
         }
         else
@@ -135,7 +135,7 @@ class User extends DbConnect
           $req->execute(array(
               'id'=> $id
           ));
-          header('Location:'.PATH.'/lions/?page=adminUser&action=succeed');
+          header('Location:'.PATH.'/?page=adminUser&action=succeed');
     }
 
 
@@ -149,7 +149,7 @@ class User extends DbConnect
                         'activate'=>$actif,
                         'admin'=>$admin
                   ));
-                  header('Location:'.PATH.'/lions/?page=adminUser&action=succeed');
+                  header('Location:'.PATH.'/?page=adminUser&action=succeed');
       }
 
       public function newPwd($id,$email)
@@ -164,7 +164,7 @@ class User extends DbConnect
             include_once 'ContactManager.php';
             $contact= new ContactManager();
             $contact->newPwd($email, $gpassword);
-            header('Location:'.PATH.'/lions/?page=adminUser&action=succeed');
+            header('Location:'.PATH.'/?page=adminUser&action=succeed');
 
       }
 

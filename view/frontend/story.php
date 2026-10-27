@@ -2,10 +2,9 @@
 ?>
 
 <?php ob_start();?>
-<div class="container " style="margin-top: 50px;
-    margin-bottom: 500px;">
-      <h1 class="mb-5 text-center text-uppercase">Qui sommes-nous ?</h1>
-      <p>
+<div class="container txt-content " style="margin-top: 50px">
+      <h1 class="mb-5 text-center text-uppercase h1-content">Qui sommes-nous ?</h1>
+      <p class="txt-content">
             <?php echo $dataContent ?>
       </p>
 </div>

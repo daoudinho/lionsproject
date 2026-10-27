@@ -11,6 +11,9 @@ class Login
 
     function log($email, $password){
         $data=$this->getUser()->get_user($email);
+        if($data==null){
+              return "email / password incorrect";
+        }
 
         $stored= $data["password"];
         $username= $data["username"];
@@ -30,12 +33,13 @@ class Login
             {
                 setcookie("id",$data["id"], time()+time()+365*24*3600,'/');
             }
-            header('Location:'.PATH.'/lions/?page=dashboard');
+            header('Location:'.PATH.'/?page=dashboard');
 
 
         }
         else {
             echo "<span>email / password incorrect</span>";
+            return "email / password incorrect";
         }
         if(isset($_GET["status"]))
         {
