@@ -37,7 +37,7 @@ $title ="Créer un évenement";?>
                 </div>
             </div>
             <div class="row justify-content-between">
-                <input class="btn btn-primary" type='submit' name='new_article'>
+                <input class="btn btn-primary" type='submit' name='new_article' value="Publier">
 
             </div>
         </form>

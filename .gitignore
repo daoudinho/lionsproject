@@ -1,3 +1,15 @@
 config.php
 SITE_NICE_DOYEN.docx
 test.php
+
+# Compteurs de visites (donnees de prod)
+compteur_visites.txt
+compteur_visites_members.txt
+
+# Brouillons et sources graphiques
+view/frontend/brouillon
+*.psd
+operation-rempart8.jpg
+
+# Config IDE
+.idea/

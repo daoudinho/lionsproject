@@ -108,6 +108,13 @@ try {
                             editStory();
                             exit();
                       }
+                      elseif ($_GET['page'] == 'edit_invitation') {
+                            editInvitation();
+                            exit();
+                      }
+                      elseif($_GET['page'] == 'compteur'){
+                            rmz();
+                      }
                 }
                 // if chemin pour page identification
                 if ($_GET['page'] == 'log') {
@@ -197,6 +204,12 @@ try {
              //path to paypal donation
           elseif ($_GET['page'] == 'cotisation') {
                 historique();
+          }
+          elseif ($_GET['page'] == 'Rapport') {
+                header('Location:./public/media/Rapport.pdf');
+          }
+	  elseif ($_GET['page'] == 'In_memoriam') {
+                  inMemoriam();
           }
           //if there is no path
           else {

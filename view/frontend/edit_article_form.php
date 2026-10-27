@@ -44,7 +44,7 @@ if(isset($message)){
                         </div>
                     </div>
                     <div class="row justify-content-between">
-                        <input class="btn btn-primary" type='submit' name='edit_article'>
+                        <input class="btn btn-primary" type='submit' name='edit_article' value="Editer">
 
                     </div>
                 </form>

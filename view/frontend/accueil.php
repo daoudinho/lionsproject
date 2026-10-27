@@ -29,12 +29,12 @@
                                    }
                                    ?>
                             <!--6-->   <div class="carousel-item justify-content-center  <?= $actives; ?>">
-                                             <img src="upload/<?php echo $new['file'] ;?>" alt="Second slide" class="mx-auto d-block"  height="750">
+                                             <img src="upload/<?php echo $new['file'] ;?>" alt="Second slide" id="slide" class="mx-auto d-block">
                                        <?php if($new['article_id'] !=0){?><a href="<?= PATH ?>?page=article&article=<?=$new['article_id']?>"><?php }?>
 
                                                <div class="carousel-caption">
-                                                       <h4 class="white-font-text"><?php echo $new['title']?></h4>
-                                                       <p class="white-font-text"><?php echo $content?></p>
+                                                    <h4 class="white-font-text1"><i class="fas fa-hand-pointer"></i> <?php echo $new['title']?></h4>
+                                                    <p class="white-font-text"><?php echo $content?></p>
                                                </div>
                                      <?php if($new['article_id'] !=0){?></a><?php }?>
                             <!--6-->   </div>

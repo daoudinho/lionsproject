@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+<nav class="navbar navbar-expand navbar-light bg-light justify-content-end" id="navbar">
     <!--<a class="navbar-brand ml-3" href="https://www.lions-france.org/">
         <img src="public/media/logo.gif" width="30" height="30" class="d-inline-block align-top mr-3" alt="logo lions club">
         Lions Club Nice Doyen

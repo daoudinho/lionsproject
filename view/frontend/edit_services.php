@@ -31,7 +31,7 @@ $title ="Modifier les services";?>
                   </div>
             </div>-->
             <div class="row justify-content-between">
-                  <input class="btn btn-primary" type='submit' name='edit_services'>
+                  <input class="btn btn-primary" type='submit' name='edit_services' value="Editer">
 
             </div>
       </form>

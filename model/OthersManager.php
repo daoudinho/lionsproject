@@ -33,6 +33,29 @@ class OthersManager extends DbConnect
             ));
             return ("Les services ont été mise à jour");
       }
+
+      function getInvitation(){
+            $req = $this->getDb()->query('SELECT * FROM services WHERE id=3 ');
+            $data=$req->fetch();
+            return $data;
+      }
+
+      public function editInvitation($content)
+      {
+            $data = $this->getInvitation();
+            if($data != false){
+                  $req=$this->getDb()->prepare('UPDATE services SET content=:content WHERE id=3 ');
+                  $req->execute(array(
+                      "content" => $content,
+                  ));
+            }else{
+                  $req=$this->getDb()->prepare("INSERT INTO services (id,content) VALUES (3,:content)");
+                  $req->execute(array(
+                      "content" => $content,
+                  ));
+            }
+            return ("Les informations ont été mise à jour");
+      }
    /*public function getArticles()
     {
         $req = $this->getDb()->query('SELECT * FROM homepage');

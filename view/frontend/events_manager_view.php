@@ -64,7 +64,7 @@ $path ="'.$path .'";?>
                                   ?>
                                 <div class="row">
                                     <a href="<?php echo PATH ?>?page=edit_article&id=<?php echo $data['id'] ?>" class="btn btn-primary m-2">Editer</a>
-                                    <btn type="submit" class="btn btn-danger m-2" value="Supprimer" name="delete" onclick="confirmation(<?=$data['id']?>,<?php echo $path ?>)">Supprimer</btn>
+                                    <span class="btn btn-danger m-2" value="Supprimer" name="delete" onclick="confirmation(<?=$data['id']?>,<?php echo $path ?>)">Supprimer</span>
                                 </div>
 
 

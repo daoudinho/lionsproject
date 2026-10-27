@@ -4,8 +4,7 @@ require_once "model/recaptchalib.php";
 $title ="Lions Club Nice Doyen";?>
 
 <?php ob_start();?>
-<div style="margin-top: 100px;
-    margin-bottom: 300px">
+<div style="margin-top: 100px">
     <div class="justify-content-lg-center container myform mt-5 mb-5">
         <form method='POST' action=''.PATH.'?page=newlog' class="col s12 m8 l6 offset-l3 offset-m2 form-group ">
 
@@ -32,10 +31,12 @@ $title ="Lions Club Nice Doyen";?>
                     <input type=password id="cpassword" value="" class="form-control" name='cpassword' required><br>
                 </div>
             </div>
-            <div class="row justify-content-between">
-                <a class="waves-effect waves-light btn-small right" href="<?php echo PATH ?>?page=log"><span>Déjà inscrit ?</span></a>
-                <div class="g-recaptcha col-4" data-sitekey="<?php echo PUBLIC_KEY; ?>"></div>
-                <input class="col-2" type='submit' name='submit'>
+        <div>
+            <a class="waves-effect waves-light btn-small right login-txt" href="<?php echo PATH ?>?page=log"><span>Déjà inscrit ?</span></a>
+        </div>
+            <div class="row justify-content-lg-between justify-content-md-center justify-content-sm-center">
+                <div class="g-recaptcha col-lg-6 col-md-6 col-sm-6 m-md-2 m-sm-2" data-sitekey="<?php echo PUBLIC_KEY; ?>"></div>
+                <input class="col-lg-4 col-md-12 col-sm-12  m-md-2 m-sm-2" type='submit' name='submit' value="Valider">
             </div>
 
         <?php if(isset($Result) && $Result!="OK"){

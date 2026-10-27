@@ -80,7 +80,7 @@ $path ="'.$path .'";
                                     </div>
                                   <div class="row justify-content-between m-2">
                                       <input type="submit" class="btn btn-primary" value="Valider" name="news" >
-                                          <btn type="submit" class="btn btn-danger" value="Supprimer" name="delete" onclick="confirmation(<?=$new['id']?>,<?php echo $path ?>)">Supprimer</btn>
+                                          <span class="btn btn-danger" value="Supprimer" name="delete" onclick="confirmation(<?=$new['id']?>,<?php echo $path ?>)">Supprimer</span>
                                   </div>
                               </div>
                               <div class="col-2">

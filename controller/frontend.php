@@ -3,7 +3,7 @@
 function login(){
       $message="";
       if(isset($_GET['succeed'])){
-            $message= "<span>Inscription reussie !</span>";
+            $message= "<span>Inscription reussie ! En attente de validation.</span>";
       }
     include_once ("view/frontend/login-form.php");
 }
@@ -257,10 +257,27 @@ function sendContact($firstname, $lastname, $email, $mobile, $content, $captcha)
       }
       include_once ('view/frontend/contact_form.php');
 }
+
 function invitation()
 {
+      include_once ('model/OthersManager.php');
+      $invitation = new OthersManager();
+      $data=$invitation->getInvitation();
+      $data= nl2br($data["content"]);
       include_once ('view/frontend/invitation_view.php');
 }
+function EditInvitation(){
+      include_once ('model/OthersManager.php');
+      $story = new OthersManager();
+      $data=$story->getInvitation();
+      if(isset($_POST['edit_invitation'])){
+            $content = $_POST['content'];
+            $story->editInvitation($content);
+            header('Location:'.PATH.'/?page=edit_invitation');
+      }
+      include_once ('view/frontend/edit_invitation.php');
+}
+
 function editHomepage()
 {
       if(isset($_POST['title'])){
@@ -421,4 +438,28 @@ function EditStory(){
             header('Location:'.PATH.'/?page=edit_story');
       }
       include_once ('view/frontend/edit_story.php');
+}
+
+function rmz(){
+
+      if($_GET['rmz'] == 'guest'){
+            $compteur_f = fopen('compteur_visites.txt', 'w+');
+            //$compte = fgets($compteur_f);
+            //fseek($compteur_f,0);
+            fputs($compteur_f, "0");
+            fclose($compteur_f);
+      }elseif($_GET['rmz'] == 'member'){
+            $compteur_fm = fopen('compteur_visites_members.txt', 'w+');
+            //$comptem = fgets($compteur_fm);
+            //fseek($compteur_fm, 0);
+            fputs($compteur_fm, "0");
+            fclose($compteur_fm);
+      }
+
+      //header('Location:'.PATH.'/?page=dashboard');
+
+}
+
+function inMemoriam() {
+      include_once ('view/frontend/in_memoriam.php');
 }

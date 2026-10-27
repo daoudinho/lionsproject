@@ -34,6 +34,7 @@ class ContactManager
                   ' ;
 
             mail("aubry.nice@wanadoo.fr",'contact',$message, $header);
+            mail("gerald.doye@gmail.com",'contact',$message, $header);
             return "Votre message à été envoyé. Nous vous contacterons dans les plus brefs délais.";
       }
       //TODO mettre adresse des admins
